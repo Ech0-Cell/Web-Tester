@@ -1,0 +1,61 @@
+Test Case Document for Project Increment 1 (Trendyol)
+
+
+Test Case 1: Successful Login
+Test Case ID: TC001
+
+Test Case Title: Verify successful login with valid credentials.
+
+Test Steps:
+
+Navigate to the Trendyol login page.
+Enter a valid email address ("sudeakseku@hotmail.com") in the username input field.
+Enter a valid password ("Sude1trendyol") in the password input field.
+Click on the login button.
+Expected Result: The user should be logged in successfully, and the page title should contain "Hesabım".
+
+Actual Result: done
+
+Status: (Pass)
+-----------------------------------
+
+
+Test Case 2: Invalid Email Address
+Test Case ID: TC002
+
+Test Case Title: Verify login with an invalid email address.
+
+Test Steps:
+
+Navigate to the Trendyol login page.
+Enter an invalid email address (e.g., "invalidemail@domain.com") in the username input field.
+Enter a valid password ("Sude1trendyol") in the password input field.
+Click on the login button.
+Expected Result: The user should not be logged in, and an appropriate error message should be displayed indicating that the email address is invalid.
+
+Actual Result: done
+
+Status: (Pass/Fail)
+-----------------------------------
+
+
+Test Case 3: Invalid Password
+Test Case ID: TC003
+
+Test Case Title: Verify login with an invalid password.
+
+Test Steps:
+
+Navigate to the Trendyol login page.
+Enter a valid email address ("sudeakseku@hotmail.com") in the username input field.
+Enter an invalid password (e.g., "InvalidPassword") in the password input field.
+Click on the login button.
+Expected Result : The user should not be logged in
+
+
+
+
+
+
+
+
