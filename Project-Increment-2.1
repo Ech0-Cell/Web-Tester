@@ -1,0 +1,55 @@
+import time
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+
+service = Service(executable_path='/usr/local/bin/chromedriver')
+driver = webdriver.Chrome(service=service)
+
+def test_home_page_button():
+    driver.get("http://localhost:5037")
+    
+    header = driver.find_element(By.TAG_NAME, 'header')
+    assert header is not None
+    universities_list = driver.find_element(By.TAG_NAME, 'ul')
+    assert universities_list is not None
+    print("Home page loaded successfully")
+    
+    time.sleep(1)
+    privacy_link = driver.find_element(By.LINK_TEXT, 'Privacy')
+    privacy_link.click()
+    
+    time.sleep(2)
+    
+    header = driver.find_element(By.TAG_NAME, 'header')
+    assert header is not None
+    privacy_text = driver.find_element(By.TAG_NAME, 'h1')
+    assert privacy_text.text == "Privacy Policy"
+    print("Privacy page loaded successfully via Home page button")
+
+def test_privacy_page_button():
+    driver.get("http://localhost:5037/Privacy")
+    
+    header = driver.find_element(By.TAG_NAME, 'header')
+    assert header is not None
+    privacy_text = driver.find_element(By.TAG_NAME, 'h1')
+    assert privacy_text.text == "Privacy Policy"
+    print("Privacy page loaded successfully")
+    
+    home_link = driver.find_element(By.LINK_TEXT, 'Home')
+    home_link.click()
+    
+    time.sleep(2)
+    
+    header = driver.find_element(By.TAG_NAME, 'header')
+    assert header is not None
+    universities_list = driver.find_element(By.TAG_NAME, 'ul')
+    assert universities_list is not None
+    print("Home page loaded successfully via Privacy page button")
+
+try:
+    test_home_page_button()
+    test_privacy_page_button()
+finally:
+    driver.quit()
