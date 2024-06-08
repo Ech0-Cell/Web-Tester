@@ -1,0 +1,179 @@
+Document Overview
+Scope & Purpose
+The scope of this document is to provide i2i Internal Acceptance Test Cases and their results on the Android app, which forms a critical part of the Ech0 Cell Program/Project.
+
+
+Audience
+Business departments
+Business/System analysts
+Solution/System Architects
+Program/Project Managers
+Test Execution
+Test Case Index
+
+TC_001: Create Subscriber
+TC_002: Login with Correct Input
+TC_003: Login with Wrong Input
+TC_004: Show Remaining Balance
+TC_005: Send SMS
+TC_006: View SMS Inbox
+TC_007: User Logout
+Detailed Test Cases
+TC_001: Create Subscriber
+
+Short Description: Successful creation of new subscribers.
+Scenario Description: Verify that a new user can register successfully.
+Pre-Condition: Subscriber should not exist.
+Input Data:
+msisdn: 5504854978
+packageID: 2
+name: SUDE
+surname: AKS
+email: sude@gmail.com
+password: mth@2004184
+securityKey: 0000
+Triggering the Test Case:
+Open Ech0CELL SMS app.
+Navigate to the registration page.
+Fill in all inputs.
+Submit the form.
+Output/Result Data: Successful creation message and successful registration.
+Expected Outputs (Success conditions):
+Subscriber created successfully.
+Passed: YES
+Finding Id: 5504854978
+TC_002: Login with Correct Input
+
+Short Description: Successful login of registered users.
+Scenario Description: Verify that a registered user can log in successfully.
+Pre-Condition: Subscriber should exist.
+Input Data:
+msisdn: 5504854978
+password: mth@1445
+Triggering the Test Case:
+Open Ech0CELL desktop app.
+Navigate to the login page.
+Fill in msisdn and password inputs.
+Submit the form.
+Output/Result Data: Successful login message and token.
+Expected Outputs (Success conditions):
+Logged in successfully.
+Passed: YES
+Finding Id: 5504854978
+TC_003: Login with Wrong Input
+
+Short Description: Unsuccessful login attempt with incorrect credentials.
+Scenario Description: Verify that the application handles login attempts with incorrect credentials.
+Pre-Condition: Subscriber should exist.
+Input Data:
+msisdn: 55494216
+password: 12345
+Triggering the Test Case:
+Open Ech0CELL desktop app.
+Navigate to the login page.
+Fill in msisdn and password inputs.
+Submit the form.
+Output/Result Data: Unsuccessful login message.
+Expected Outputs (Success conditions):
+Error: HTTP response code - 4000
+Passed: YES
+Finding Id: 55494216
+TC_004: Show Remaining Balance
+
+Short Description: Display the remaining balance for a logged-in user.
+Scenario Description: Verify that a logged-in user can view their remaining balance.
+Pre-Condition: Subscriber should log in.
+Input Data: N/A
+Triggering the Test Case:
+Open Ech0CELL desktop app.
+Navigate to the show balance page.
+Output/Result Data: Remaining balance list.
+Expected Outputs (Success conditions):
+Remaining Balance List
+Passed: YES
+Finding Id: 5504854978
+TC_005: Send SMS
+
+Short Description: Successful sending of an SMS message by a user.
+Scenario Description: Verify that a user can send an SMS through the application.
+Pre-Condition: Subscriber should log in.
+Input Data: N/A
+Triggering the Test Case:
+Log in with valid credentials.
+Navigate to the SMS sending feature.
+Enter recipient phone number and compose the message.
+Click "Send".
+Output/Result Data: Successfully send SMS message.
+Expected Outputs (Success conditions):
+Sending SMS Message
+Passed: YES
+Finding Id: 5504854978
+TC_006: View SMS Inbox
+
+Short Description: Successful viewing of the SMS inbox by a logged-in user.
+Scenario Description: Verify that a logged-in user can view their SMS inbox.
+Pre-Condition: Subscriber should log in.
+Input Data: N/A
+Triggering the Test Case:
+Log in with valid credentials.
+Navigate to the SMS inbox section.
+Output/Result Data: Successfully view SMS inbox.
+Expected Outputs (Success conditions):
+Viewing SMS Inbox
+Passed: YES
+Finding Id: 5504854978
+TC_007: User Logout
+
+Short Description: Successful logout of a logged-in user.
+Scenario Description: Verify that a logged-in user can log out successfully.
+Pre-Condition: Subscriber should log in.
+Input Data: N/A
+Triggering the Test Case:
+Log in with valid credentials.
+Access the logout option.
+Click "Logout".
+Output/Result Data: Successfully logout message.
+Expected Outputs (Success conditions):
+Logging out
+Passed: YES
+Finding Id: 5504854978
+Test Results
+Findings History
+Defect ID (Mantis ID): TC002
+
+Short Defect Description: Cannot login successfully.
+Opened Date: 24.05.2024
+Status: Open
+Severity: Critical
+Developer/Tester: SUDE AKSEKÜ
+Defect ID (Mantis ID): TC007
+
+Short Defect Description: You can still choose log out even if you didn’t log in.
+Opened Date: 24.05.2024
+Status: Open
+Severity: Medium
+Developer/Tester: SUDE AKSEKÜ
+Appendix - 1
+Defect Severity Level Definitions
+Critical: Fatal for execution, causing loss of functionality or money.
+High/Medium: Non-fatal defects but affect functionality or data correctness.
+Low: Cosmetic defects not affecting functionality or data.
+Appendix - 2
+Document Control
+Superseded Documents: N/A
+Owner: SUDE AKSEKÜ
+Reviewer: Mennan Tekbir
+
+
+Change Descriptions: Initial Version
+Author: SUDE AKSEKÜ
+Date: 09/06/2024
+Approvals
+Name: SUDE AKSEKÜ
+
+
+
+
+
+
+
