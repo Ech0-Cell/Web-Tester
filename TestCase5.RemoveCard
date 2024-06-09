@@ -1,0 +1,65 @@
+# Test Case 5: Remove from Cart
+# Documentation:
+# Description: Verify that a user can remove a product from the cart.
+# Steps:
+
+# Add a product to the cart.
+# Navigate to the cart.
+# Click on the remove button next to the product.
+# Verify that the product is removed from the cart.
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# Set up WebDriver
+driver = webdriver.Chrome()
+
+# Navigate to the Trendyol homepage and log in
+driver.get("https://www.trendyol.com/giris")
+wait = WebDriverWait(driver, 10)
+username_input = wait.until(EC.element_to_be_clickable((By.ID, "login-email")))
+password_input = wait.until(EC.element_to_be_clickable((By.ID, "login-password-input")))
+
+username_input.send_keys("sudeakseku@hotmail.com")
+password_input.send_keys("Sude1trendyol")
+login_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button.q-primary.q-fluid.q-button-medium")))
+driver.execute_script("arguments[0].scrollIntoView();", login_button)
+login_button.click()
+
+# Wait for the page to load fully
+wait.until(EC.title_contains("Hesabım"))
+
+# Add a product to the cart
+driver.get("https://www.trendyol.com")
+search_bar = wait.until(EC.element_to_be_clickable((By.NAME, "q")))
+search_bar.send_keys("laptop")
+search_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button.search-button")))
+search_button.click()
+
+wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ".prdct-cntnr-wrppr")))
+product = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".p-card-wrppr:nth-child(1)")))
+product.click()
+
+add_to_cart_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button.add-to-basket")))
+add_to_cart_button.click()
+
+# Navigate to the cart
+cart_icon = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".account-basket")))
+cart_icon.click()
+
+# Remove the product from the cart
+remove_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".i-trash")))
+remove_button.click()
+
+# Verify that the product is removed from the cart
+empty_cart_message = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ".empty-basket-title")))
+
+if empty_cart_message.is_displayed():
+    print("Product removed from cart successfully!")
+else:
+    print("Failed to remove product from cart!")
+
+# Close the browser
+driver.quit()
