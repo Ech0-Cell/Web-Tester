@@ -1,0 +1,52 @@
+# Test Case 7: User Logout
+# Documentation:
+# Description: Verify that a logged-in user can log out.
+# Steps:
+
+# Log in to the application.
+# Click on the logout button.
+# Verify that the user is redirected to the login page.
+
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# Set up WebDriver
+driver = webdriver.Chrome()
+
+# Navigate to the Trendyol login page
+driver.get("https://www.trendyol.com/giris")
+
+# Find login elements
+wait = WebDriverWait(driver, 10)
+username_input = wait.until(EC.element_to_be_clickable((By.ID, "login-email")))
+password_input = wait.until(EC.element_to_be_clickable((By.ID, "login-password-input")))
+
+# Input login credentials
+username_input.send_keys("sudeakseku@hotmail.com")
+password_input.send_keys("Sude1trendyol")
+
+# Submit the login form
+login_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button.q-primary.q-fluid.q-button-medium")))
+driver.execute_script("arguments[0].scrollIntoView();", login_button)
+login_button.click()
+
+# Wait for the page to load fully
+wait.until(EC.title_contains("Hesabım"))
+
+# Log out
+logout_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button.logout-button")))
+logout_button.click()
+
+# Verify logout
+wait.until(EC.title_contains("Giriş"))
+
+if "Giriş" in driver.title:
+    print("Logout successful!")
+else:
+    print("Logout failed!")
+
+# Close the browser
+driver.quit()
