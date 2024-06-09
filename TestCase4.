@@ -1,0 +1,51 @@
+# Test Case 4: Add to Cart
+# Documentation:
+# Description: Verify that a user can add a product to the cart.
+# Steps:
+
+# Perform a product search.
+# Select a product from the search results.
+# Click on "Add to Cart" button.
+# Verify that the product is added to the cart.
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# Set up WebDriver
+driver = webdriver.Chrome()
+
+# Navigate to the Trendyol homepage
+driver.get("https://www.trendyol.com")
+
+# Find search elements
+wait = WebDriverWait(driver, 10)
+search_bar = wait.until(EC.element_to_be_clickable((By.NAME, "q")))
+
+# Input search query
+search_bar.send_keys("laptop")
+search_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button.search-button")))
+search_button.click()
+
+# Wait for search results
+wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ".prdct-cntnr-wrppr")))
+
+# Select a product
+product = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".p-card-wrppr:nth-child(1)")))
+product.click()
+
+# Add to cart
+add_to_cart_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button.add-to-basket")))
+add_to_cart_button.click()
+
+# Verify that the product is added to the cart
+cart_count = wait.until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, ".account-basket .basket-count"), "1"))
+
+if cart_count:
+    print("Product added to cart successfully!")
+else:
+    print("Failed to add product to cart!")
+
+# Close the browser
+driver.quit()
