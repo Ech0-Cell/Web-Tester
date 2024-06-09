@@ -1,0 +1,42 @@
+# Test Case 3: Product Search
+# Documentation:
+# Description: Verify that the search functionality works correctly.
+# Steps:
+
+# Navigate to the homepage.
+# Enter a product name in the search bar.
+# Click on the search button.
+# Verify that relevant products are displayed.
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# Set up WebDriver
+driver = webdriver.Chrome()
+
+# Navigate to the Trendyol homepage
+driver.get("https://www.trendyol.com")
+
+# Find search elements
+wait = WebDriverWait(driver, 10)
+search_bar = wait.until(EC.element_to_be_clickable((By.NAME, "q")))
+
+# Input search query
+search_bar.send_keys("laptop")
+search_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button.search-button")))
+search_button.click()
+
+# Wait for search results
+wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ".prdct-cntnr-wrppr")))
+
+# Validate search results
+results = driver.find_elements(By.CSS_SELECTOR, ".prdct-cntnr-wrppr .p-card-wrppr")
+if results:
+    print("Search successful, products found!")
+else:
+    print("Search failed, no products found!")
+
+# Close the browser
+driver.quit()
